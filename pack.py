@@ -10,7 +10,9 @@ def mkdir_p(path):
         else:
             raise
 
+
 floder = "include"
+os.system("rm -rf" + floder + "*")
 mkdir_p(floder)
 
 index_file = open("include/index.txt", 'w')
@@ -27,9 +29,10 @@ for line in output:
     if start == True:
         cur_dir = floder + "/" + line[1:]
         mkdir_p(cur_dir)
-        os.system("cp -r " + line + " " + cur_dir)
+        cp = "cp -r " + line + "/* " + cur_dir
+        os.system(cp)
         index_file.write(cur_dir + "\n")
-        print(cur_dir)
+        print(cp)
 
     if line == "#include <...> search starts here:":
         start = True
